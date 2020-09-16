@@ -3,6 +3,7 @@ import ContactForm from "./ContactForm";
 import firebaseDb from "../firebase";
 import $ from "jquery";
 import alertify from "alertifyjs";
+import contextMenu from "jquery-contextmenu";
 
 const Contacts = () => {
   var [contactObjects, setContactObjects] = useState({});
@@ -64,9 +65,25 @@ const Contacts = () => {
     // }
   };
 
-  $(document).on("click", "#data tr", function (e) {
+  $(document).on("click contextmenu", "#data tr", function (e) {
     $("#data tr").removeClass("highlighted");
     $(this).addClass("highlighted");
+  });
+
+  $.contextMenu({
+    selector: "#data tr",
+    items: {
+      foo: {
+        name: "Foo",
+        callback: function (key, opt) {},
+      },
+      bar: {
+        name: "Bar",
+        callback: function (key, opt) {
+          alert("Bar!");
+        },
+      },
+    },
   });
 
   return (

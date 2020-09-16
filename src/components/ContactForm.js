@@ -68,6 +68,8 @@ const ContactForm = (props) => {
 
   return (
     <div className="noluki">
+      <span className="form-name">Personel Ekle</span>
+
       <form
         id="nol"
         autoComplete="off"
@@ -84,6 +86,7 @@ const ContactForm = (props) => {
                 className="deneme"
                 name="tcNo"
                 value={values.tcNo}
+                maxLength="11"
                 onChange={handleInputChange}
               />
             </div>
@@ -96,6 +99,7 @@ const ContactForm = (props) => {
             <div class="field">
               <input
                 className="deneme"
+                id="phone"
                 name="fullName"
                 value={values.fullName}
                 onChange={handleInputChange}
@@ -133,6 +137,7 @@ const ContactForm = (props) => {
             <label className="label">E-Mail</label>
             <div class="field">
               <input
+                type="email"
                 className="deneme"
                 name="email"
                 value={values.email}

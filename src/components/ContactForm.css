@@ -108,7 +108,7 @@ tbody tr td.selected {
 }
 
 tr.highlighted td {
-  transition-duration: 0.5s;
+  transition-duration: 0.7s;
   background-color: #0e6883;
   color: #fff;
 }
@@ -177,6 +177,7 @@ tr:nth-child(odd) {
   margin-right: -15px;
 }
 
+.form-name {}
 
 .mokoko {
   position: relative;
