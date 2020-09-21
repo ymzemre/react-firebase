@@ -72,128 +72,131 @@ const PersonnelForm = (props) => {
   };
 
   return (
-    <div className="container">
-      <span className="form-name">Personel Ekle</span>
+    <div>
+      <div className="container-form-name">
+        <span className="form-name">Personel Ekle</span>
+      </div>
+      <div className="container">
+        <form className="form" onSubmit={handleFormSubmit} autoComplete="off">
+          <div className="field-container">
+            <div class="field-group">
+              <label htmlFor="tcNo" className="label">
+                TC
+              </label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  name="tcNo"
+                  value={values.tcNo}
+                  maxLength="11"
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
 
-      <form className="form" onSubmit={handleFormSubmit} autoComplete="off">
-        <div className="field-container">
-          <div class="field-group">
-            <label htmlFor="tcNo" className="label">
-              TC
-            </label>
-            <div class="field">
-              <input
-                className="form-input"
-                name="tcNo"
-                value={values.tcNo}
-                maxLength="11"
-                onChange={handleInputChange}
-              />
+            <div class="field-group">
+              <label htmlFor="fullName" className="label">
+                Ad Soyad
+              </label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  id="phone"
+                  name="fullName"
+                  value={values.fullName}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label htmlFor="gender" className="label">
+                Cinsiyet
+              </label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  name="gender"
+                  value={values.gender}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label className="label">Telefon</label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  name="phone"
+                  value={values.phone}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label className="label">E-Mail</label>
+              <div class="field">
+                <input
+                  // type="email"
+                  className="form-input"
+                  name="email"
+                  value={values.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label className="label">Departman</label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  name="department"
+                  value={values.department}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label className="label">Maaş</label>
+              <div class="field">
+                <input
+                  className="form-input"
+                  name="salary"
+                  value={values.salary}
+                  onChange={handleInputChange}
+                />
+              </div>
             </div>
           </div>
 
-          <div class="field-group">
-            <label htmlFor="fullName" className="label">
-              Ad Soyad
-            </label>
-            <div class="field">
-              <input
-                className="form-input"
-                id="phone"
-                name="fullName"
-                value={values.fullName}
-                onChange={handleInputChange}
-              />
+          <div className="container-form-button">
+            <div class="field-group">
+              <div class="field">
+                <button
+                  type="reset"
+                  className="clearButton form-button"
+                  value="Temizle"
+                >
+                  <i className="fas fa-times fa-icon"></i> Temizle
+                </button>
+              </div>
             </div>
-          </div>
 
-          <div class="field-group">
-            <label htmlFor="gender" className="label">
-              Cinsiyet
-            </label>
-            <div class="field">
-              <input
-                className="form-input"
-                name="gender"
-                value={values.gender}
-                onChange={handleInputChange}
-              />
+            <div class="field-group">
+              <div class="field">
+                <button className="addButton form-button" type="submit">
+                  <i className="fas fa-check fa-icon"></i>
+                  {props.currentId === "" ? "  Kaydet" : "  Güncelle"}
+                </button>
+              </div>
             </div>
           </div>
-
-          <div class="field-group">
-            <label className="label">Telefon</label>
-            <div class="field">
-              <input
-                className="form-input"
-                name="phone"
-                value={values.phone}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label className="label">E-Mail</label>
-            <div class="field">
-              <input
-                // type="email"
-                className="form-input"
-                name="email"
-                value={values.email}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label className="label">Departman</label>
-            <div class="field">
-              <input
-                className="form-input"
-                name="department"
-                value={values.department}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label className="label">Maaş</label>
-            <div class="field">
-              <input
-                className="form-input"
-                name="salary"
-                value={values.salary}
-                onChange={handleInputChange}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="container-form-button">
-          <div class="field-group">
-            <div class="field">
-              <button
-                type="reset"
-                className="clearButton form-button"
-                value="Temizle"
-              >
-                <i className="fas fa-times fa-icon"></i> Temizle
-              </button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <div class="field">
-              <button className="addButton form-button" type="submit">
-                <i className="fas fa-check fa-icon"></i>
-                {props.currentId === "" ? "  Kaydet" : "  Güncelle"}
-              </button>
-            </div>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

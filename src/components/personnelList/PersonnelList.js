@@ -12,7 +12,7 @@ const PersonnelList = () => {
   var [currentId, setCurrentId] = useState("");
 
   useEffect(() => {
-    firebaseDb.child("personnel").on("value", (snapshot) => {
+    firebaseDb.child("personnel-demo").on("value", (snapshot) => {
       if (snapshot.val() != null) {
         setPersonnelObjects({
           ...snapshot.val(),
@@ -25,12 +25,12 @@ const PersonnelList = () => {
 
   const addOrEdit = (obj) => {
     if (currentId === "")
-      firebaseDb.child("personnel").push(obj, (err) => {
+      firebaseDb.child("personnel-demo").push(obj, (err) => {
         if (err) console.log(err);
         else setCurrentId("");
       });
     else
-      firebaseDb.child(`personnel/${currentId}`).set(obj, (err) => {
+      firebaseDb.child(`personnel-demo/${currentId}`).set(obj, (err) => {
         if (err) console.log(err);
         else setCurrentId("");
       });
@@ -50,7 +50,7 @@ const PersonnelList = () => {
       "Personel Sil",
       PersonnelObjects[key].fullName + " İsimli Personel Silinecek",
       function () {
-        firebaseDb.child(`personnel/${key}`).remove((err) => {
+        firebaseDb.child(`personnel-demo/${key}`).remove((err) => {
           if (err) console.log(err);
           else setCurrentId("");
         });
