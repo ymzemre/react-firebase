@@ -46,13 +46,15 @@ const Contacts = () => {
 
     alertify.confirm(
       "Personel Sil",
-      "Confirm Message",
+      contactObjects[key].fullName + " İsimli Personel Silinecek",
       function () {
         firebaseDb.child(`contacts/${key}`).remove((err) => {
           if (err) console.log(err);
           else setCurrentId("");
         });
-        alertify.success("Personel Silindi");
+        alertify.success(
+          contactObjects[key].fullName + " İsimli Personel Silindi"
+        );
       },
       function () {}
     );
@@ -65,6 +67,10 @@ const Contacts = () => {
     // }
   };
 
+  const eda = (id) => {
+    // alertify.confirm().setContent(contactObjects[id].fullName).show();
+  };
+
   $(document).on("click contextmenu", "#data tr", function (e) {
     $("#data tr").removeClass("highlighted");
     $(this).addClass("highlighted");
@@ -73,9 +79,11 @@ const Contacts = () => {
   $.contextMenu({
     selector: "#data tr",
     items: {
-      foo: {
+      contactObjects: {
         name: "Foo",
-        callback: function (key, opt) {},
+        callback: function (id) {
+          console.log(contactObjects[id].fullName);
+        },
       },
       bar: {
         name: "Bar",
@@ -96,7 +104,7 @@ const Contacts = () => {
             <th>TC</th>
             <th>Ad Soyad</th>
             <th>
-              <i className="fas fa-camera"></i>
+              <i className="fas fa-camera fa-icon"></i>
             </th>
             <th>Cinsiyet</th>
             <th>Telefon</th>
@@ -110,7 +118,12 @@ const Contacts = () => {
         <tbody>
           {Object.keys(contactObjects).map((id) => {
             return (
-              <tr key={id}>
+              <tr
+                key={id}
+                onDoubleClick={() => {
+                  eda(id);
+                }}
+              >
                 <td>{contactObjects[id].tcNo}</td>
                 <td className="textIndent">{contactObjects[id].fullName}</td>
                 <td className="center iconSet blue">
