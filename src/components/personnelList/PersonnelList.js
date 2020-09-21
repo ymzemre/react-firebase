@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
-import PersonnelForm from "./PersonnelForm";
-import firebaseDb from "../firebase";
+import PersonnelForm from "../personnelForm/PersonnelForm";
+import firebaseDb from "../../firebase";
 import $ from "jquery";
 import alertify from "alertifyjs";
 import contextMenu from "jquery-contextmenu";
+import "./personnelList.css";
+import "../../css/alert.css";
 
-const Contacts = () => {
-  var [contactObjects, setContactObjects] = useState({});
+const PersonnelList = () => {
+  var [PersonnelObjects, setPersonnelObjects] = useState({});
   var [currentId, setCurrentId] = useState("");
 
   useEffect(() => {
-    firebaseDb.child("contacts").on("value", (snapshot) => {
+    firebaseDb.child("personnel").on("value", (snapshot) => {
       if (snapshot.val() != null) {
-        setContactObjects({
+        setPersonnelObjects({
           ...snapshot.val(),
         });
       } else {
-        setContactObjects({});
+        setPersonnelObjects({});
       }
     });
   }, []);
 
   const addOrEdit = (obj) => {
     if (currentId === "")
-      firebaseDb.child("contacts").push(obj, (err) => {
+      firebaseDb.child("personnel").push(obj, (err) => {
         if (err) console.log(err);
         else setCurrentId("");
       });
     else
-      firebaseDb.child(`contacts/${currentId}`).set(obj, (err) => {
+      firebaseDb.child(`personnel/${currentId}`).set(obj, (err) => {
         if (err) console.log(err);
         else setCurrentId("");
       });
@@ -46,29 +48,25 @@ const Contacts = () => {
 
     alertify.confirm(
       "Personel Sil",
-      contactObjects[key].fullName + " İsimli Personel Silinecek",
+      PersonnelObjects[key].fullName + " İsimli Personel Silinecek",
       function () {
-        firebaseDb.child(`contacts/${key}`).remove((err) => {
+        firebaseDb.child(`personnel/${key}`).remove((err) => {
           if (err) console.log(err);
           else setCurrentId("");
         });
         alertify.success(
-          contactObjects[key].fullName + " İsimli Personel Silindi"
+          PersonnelObjects[key].fullName + " İsimli Personel Silindi"
         );
       },
       function () {}
     );
 
     // if (window.confirm("Are you sure to delete this record?")) {
-    //   firebaseDb.child(`contacts/${key}`).remove((err) => {
+    //   firebaseDb.child(`personnel/${key}`).remove((err) => {
     //     if (err) console.log(err);
     //     else setCurrentId("");
     //   });
     // }
-  };
-
-  const eda = (id) => {
-    // alertify.confirm().setContent(contactObjects[id].fullName).show();
   };
 
   $(document).on("click contextmenu", "#data tr", function (e) {
@@ -79,10 +77,10 @@ const Contacts = () => {
   $.contextMenu({
     selector: "#data tr",
     items: {
-      contactObjects: {
+      PersonnelObjects: {
         name: "Foo",
         callback: function (id) {
-          console.log(contactObjects[id].fullName);
+          console.log(PersonnelObjects[id].fullName);
         },
       },
       bar: {
@@ -96,7 +94,7 @@ const Contacts = () => {
 
   return (
     <div>
-      <PersonnelForm {...{ addOrEdit, currentId, contactObjects }} />
+      <PersonnelForm {...{ addOrEdit, currentId, PersonnelObjects }} />
 
       <table id="data" className="personnelTable">
         <thead>
@@ -116,28 +114,25 @@ const Contacts = () => {
         </thead>
 
         <tbody>
-          {Object.keys(contactObjects).map((id) => {
+          {Object.keys(PersonnelObjects).map((id) => {
             return (
-              <tr
-                key={id}
-                onDoubleClick={() => {
-                  eda(id);
-                }}
-              >
-                <td>{contactObjects[id].tcNo}</td>
-                <td className="textIndent">{contactObjects[id].fullName}</td>
+              <tr key={id}>
+                <td>{PersonnelObjects[id].tcNo}</td>
+                <td className="textIndent">{PersonnelObjects[id].fullName}</td>
                 <td className="center iconSet blue">
                   <i
                     className="fas fa-camera"
                     style={{ cursor: "pointer" }}
                   ></i>
                 </td>
-                <td className="textIndent">{contactObjects[id].gender}</td>
-                <td className="textIndent">{contactObjects[id].phone}</td>
-                <td className="textIndent">{contactObjects[id].email}</td>
-                <td className="textIndent">{contactObjects[id].department}</td>
+                <td className="textIndent">{PersonnelObjects[id].gender}</td>
+                <td className="textIndent">{PersonnelObjects[id].phone}</td>
+                <td className="textIndent">{PersonnelObjects[id].email}</td>
                 <td className="textIndent">
-                  {contactObjects[id].salary + " ₺"}
+                  {PersonnelObjects[id].department}
+                </td>
+                <td className="textIndent">
+                  {PersonnelObjects[id].salary + " ₺"}
                 </td>
                 <td className="center iconSet">
                   <i
@@ -165,4 +160,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default PersonnelList;

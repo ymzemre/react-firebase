@@ -4,7 +4,7 @@ import alertify from "alertifyjs";
 // import $ from "jquery";
 
 const PersonnelForm = (props) => {
-  const initialFieldValues = {
+  const fieldValues = {
     tcNo: "",
     fullName: "",
     gender: "",
@@ -14,15 +14,15 @@ const PersonnelForm = (props) => {
     salary: "",
   };
 
-  var [values, setValues] = useState(initialFieldValues);
+  var [values, setValues] = useState(fieldValues);
 
   useEffect(() => {
-    if (props.currentId === "") setValues({ ...initialFieldValues });
+    if (props.currentId === "") setValues({ ...fieldValues });
     else
       setValues({
-        ...props.contactObjects[props.currentId],
+        ...props.PersonnelObjects[props.currentId],
       });
-  }, [props.currentId, props.contactObjects]);
+  }, [props.currentId, props.PersonnelObjects]);
 
   const handleInputChange = (e) => {
     var { name, value } = e.target;
@@ -65,30 +65,25 @@ const PersonnelForm = (props) => {
         props.currentId === ""
           ? alertify.success("Personel Eklendi")
           : alertify.success(
-              props.contactObjects[props.currentId].fullName +
+              props.PersonnelObjects[props.currentId].fullName +
                 " İsimli Personel Güncellendi"
             );
     }
   };
 
   return (
-    <div className="noluki">
+    <div className="container">
       <span className="form-name">Personel Ekle</span>
 
-      <form
-        id="nol"
-        autoComplete="off"
-        onSubmit={handleFormSubmit}
-        className="arka"
-      >
-        <div className="mokoko">
+      <form className="form" onSubmit={handleFormSubmit} autoComplete="off">
+        <div className="field-container">
           <div class="field-group">
             <label htmlFor="tcNo" className="label">
               TC
             </label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 name="tcNo"
                 value={values.tcNo}
                 maxLength="11"
@@ -103,7 +98,7 @@ const PersonnelForm = (props) => {
             </label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 id="phone"
                 name="fullName"
                 value={values.fullName}
@@ -118,7 +113,7 @@ const PersonnelForm = (props) => {
             </label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 name="gender"
                 value={values.gender}
                 onChange={handleInputChange}
@@ -130,7 +125,7 @@ const PersonnelForm = (props) => {
             <label className="label">Telefon</label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 name="phone"
                 value={values.phone}
                 onChange={handleInputChange}
@@ -143,7 +138,7 @@ const PersonnelForm = (props) => {
             <div class="field">
               <input
                 // type="email"
-                className="deneme"
+                className="form-input"
                 name="email"
                 value={values.email}
                 onChange={handleInputChange}
@@ -155,7 +150,7 @@ const PersonnelForm = (props) => {
             <label className="label">Departman</label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 name="department"
                 value={values.department}
                 onChange={handleInputChange}
@@ -167,7 +162,7 @@ const PersonnelForm = (props) => {
             <label className="label">Maaş</label>
             <div class="field">
               <input
-                className="deneme"
+                className="form-input"
                 name="salary"
                 value={values.salary}
                 onChange={handleInputChange}
@@ -176,7 +171,7 @@ const PersonnelForm = (props) => {
           </div>
         </div>
 
-        <div className="ebut">
+        <div className="container-form-button">
           <div class="field-group">
             <div class="field">
               <button
