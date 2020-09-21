@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./ContactForm.css";
+import "./personnelForm.css";
 import alertify from "alertifyjs";
 // import $ from "jquery";
 
-const ContactForm = (props) => {
+const PersonnelForm = (props) => {
   const initialFieldValues = {
     tcNo: "",
     fullName: "",
@@ -198,4 +198,4 @@ const ContactForm = (props) => {
   );
 };
 
-export default ContactForm;
+export default PersonnelForm;

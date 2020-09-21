@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ContactForm from "./ContactForm";
+import PersonnelForm from "./PersonnelForm";
 import firebaseDb from "../firebase";
 import $ from "jquery";
 import alertify from "alertifyjs";
@@ -88,7 +88,7 @@ const Contacts = () => {
 
   return (
     <div>
-      <ContactForm {...{ addOrEdit, currentId, contactObjects }} />
+      <PersonnelForm {...{ addOrEdit, currentId, contactObjects }} />
 
       <table id="data" className="personnelTable">
         <thead>
