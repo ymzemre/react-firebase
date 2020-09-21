@@ -45,13 +45,13 @@ form .field-group:last-child .field {
 }
 
 
-.deneme:hover {
+.form-input:hover {
   background-color: #abb2b9;
   border: 1px solid #fff;
   cursor: default;
 }
 
-.deneme:focus {
+.form-input:focus {
   background-color: #abb2b9;
   border: 1px solid #fff;
   cursor: default;
@@ -88,6 +88,19 @@ form .field-group:last-child .field {
 }
 
 
+.container-form-name {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.form-name {
+  position: absolute;
+  margin-top: 19px;
+  font-size: 25px;
+  font-weight: 600;
+  text-shadow: 0px 0px 3px #f5f5f5, 0px 0px 8px #f5f5f5, 0px 0px 9px #f5f5f5;
+}
 
 .form-button {
   position: relative;
