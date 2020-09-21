@@ -61,8 +61,13 @@ const ContactForm = (props) => {
       alertify.error("Lütfen MAAŞ Alanına Sayı Girin !");
     } else {
       props.addOrEdit(values);
-
-      alertify.success("Personel Eklendi");
+      const addOrEditAlert =
+        props.currentId === ""
+          ? alertify.success("Personel Eklendi")
+          : alertify.success(
+              props.contactObjects[props.currentId].fullName +
+                " İsimli Personel Güncellendi"
+            );
     }
   };
 
@@ -137,7 +142,7 @@ const ContactForm = (props) => {
             <label className="label">E-Mail</label>
             <div class="field">
               <input
-                type="email"
+                // type="email"
                 className="deneme"
                 name="email"
                 value={values.email}
@@ -179,7 +184,7 @@ const ContactForm = (props) => {
                 className="clearButton form-button"
                 value="Temizle"
               >
-                <i className="fas fa-times"></i> Temizle
+                <i className="fas fa-times fa-icon"></i> Temizle
               </button>
             </div>
           </div>
@@ -187,7 +192,7 @@ const ContactForm = (props) => {
           <div class="field-group">
             <div class="field">
               <button className="addButton form-button" type="submit">
-                <i className="fas fa-check"></i>
+                <i className="fas fa-check fa-icon"></i>
                 {props.currentId === "" ? "  Kaydet" : "  Güncelle"}
               </button>
             </div>
