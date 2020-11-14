@@ -110,6 +110,9 @@ const PersonnelList = () => {
             <th>Departman</th>
             <th>Maaş</th>
             <th></th>
+            <th>
+              <input type="checkbox" />
+            </th>
           </tr>
         </thead>
 
@@ -134,6 +137,7 @@ const PersonnelList = () => {
                 <td className="textIndent">
                   {PersonnelObjects[id].salary + " ₺"}
                 </td>
+
                 <td className="center iconSet">
                   <i
                     onClick={() => {
@@ -150,6 +154,9 @@ const PersonnelList = () => {
                     className="fas fa-user-times"
                     style={{ cursor: "pointer" }}
                   ></i>
+                </td>
+                <td className="center">
+                  <input type="checkbox" />
                 </td>
               </tr>
             );

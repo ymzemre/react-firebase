@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./personnelForm.css";
 import alertify from "alertifyjs";
-// import $ from "jquery";
 
 const PersonnelForm = (props) => {
   const fieldValues = {
@@ -52,6 +51,7 @@ const PersonnelForm = (props) => {
     const formValidationsalaryNan = isNaN(values.salary);
 
     if (formValidation) {
+      console.log(values.tcNo);
       alertify.error("Boş Alan Bırakmayın !");
     } else if (formValidationtcNoNan) {
       alertify.error("Lütfen TC Alanına Sayı Girin !");
@@ -63,7 +63,7 @@ const PersonnelForm = (props) => {
       props.addOrEdit(values);
       const addOrEditAlert =
         props.currentId === ""
-          ? alertify.success("Personel Eklendi")
+          ? alertify.success(values.fullName + " Personel Eklendi")
           : alertify.success(
               props.PersonnelObjects[props.currentId].fullName +
                 " İsimli Personel Güncellendi"
